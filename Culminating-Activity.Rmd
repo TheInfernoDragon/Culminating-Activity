@@ -1,0 +1,250 @@
+---
+title: "Culminating Activity"
+author: "You Names"
+date: ""
+output: pdf_document
+---
+# Abstract
+Provide a concise summary of the study including purpose, methods, results, and conclusions (150–250 words).
+
+# Chapter 1: Introduction
+
+## Background of the Study
+In today’s fast-paced software development landscape, particularly in artificial intelligence, understanding and improving developer productivity has become a pressing concern for both organizations and individual programmers. The rise of AI-assisted tools such as GitHub Copilot and ChatGPT has reshaped traditional coding workflows, introducing new factors that influence how developers work and what they produce (Peng et al., 2023). Despite these advances, productivity remains difficult to measure, as it is shaped by a complex mix of behavioral, physiological, cognitive, and environmental influences.
+
+Conventional evaluation methods ranging from subjective performance reviews to simple metrics like lines of code, commit counts, or hours worked often fall short of capturing this complexity (Forsgren et al., 2021). For example, a developer may spend long hours coding but produce lower-quality output due to fatigue, high cognitive load, or constant interruptions. On the other hand, effective use of AI tools, combined with adequate rest and balanced caffeine intake, can significantly improve efficiency and task completion.
+
+With the growing availability of developer activity data, there is an opportunity to adopt more data-driven approaches to better understand and predict productivity. Machine learning techniques, particularly instance-based methods like k-Nearest Neighbors (kNN) offer a practical and interpretable way to analyze these multidimensional relationships without relying on strict assumptions about data distribution.
+
+## Statement of the Problem
+Developer productivity is difficult to measure accurately. Task outcomes are affected by a combination of behavioral, cognitive, and work-related factors, and most traditional evaluation methods, whether subjective assessments or single isolated metrics,  tend to miss how these factors interact with each other. Even with more developer activity data available today, there is still no widely agreed-upon way to predict task success reliably.
+
+Machine learning approaches, particularly the k-Nearest Neighbors (kNN) algorithm, present a practical option for tackling this problem. kNN can classify outcomes by detecting patterns across multiple variables at once, making it a reasonable fit for productivity data. However, there remains a need to evaluate how effectively such models can predict task success and to determine the extent to which different productivity-related variables influence these predictions.
+
+This study applies a kNN classification model to a developer productivity dataset to explore these questions, looking at both how well the model predicts task success and how different productivity-related variables relate to that outcome.
+
+1. How effective is the kNN model at predicting developer task success using productivity-related variables?
+2. Which productivity factors are most associated with task success in a developer work environment?
+3. How does the kNN algorithm classify developer productivity outcomes based on patterns in the dataset?
+4. How does variation in productivity-related factors affect the accuracy and performance of the kNN model?
+
+
+## Objectives of the Study
+### General Objective
+To build and evaluate a kNN-based classification model that predicts developer task success using productivity-related variables from a developer activity dataset.    
+
+### Specific Objectives
+- To implement the kNN algorithm and apply it to classify task outcomes based on patterns in the data.
+- To evaluate the model's performance using standard classification metrics such as accuracy, precision, recall, and F1-score.
+- To assess the viability of kNN as a predictive tool for developer task success by interpreting the evaluation results.
+- To examine how productivity-related factors relate to task success outcomes within the dataset.
+- To observe how changes in key input variables affect the model's prediction accuracy.
+- To identify recurring patterns in developer behavior that are associated with successful task completion.
+
+
+## Hypotheses (if applicable)
+- H0: The kNN algorithm does not achieve an accuracy of at least 90% in predicting developer task success based on productivity-related variables.
+- H1: The kNN algorithm achieves an accuracy of at least 90% in predicting developer task success based on productivity-related variables.
+
+
+## Significance of the Study
+Explain who benefits and how.
+
+## Scope and Limitations
+Define the boundaries of the study.
+
+
+# Chapter 2: Review of Related Literature
+
+## Related Studies
+Recent studies on developer productivity have increasingly shifted toward data-driven and empirical methodologies to gain a deeper understanding of performance outcomes in software development. A growing body of research has applied machine learning techniques to predict task completion, software quality, and overall developer efficiency. Among these approaches, classification methods, particularly instance-based algorithms, have been widely utilized to detect patterns in developer behavior and to forecast outcomes using historical data.
+
+In addition, contemporary empirical findings emphasize the rising influence of AI-assisted development tools on programmer productivity. For example, Peng et al. (2023) conducted a controlled experiment involving GitHub Copilot, an AI-powered coding assistant, and found that it reduced task completion time by 55.8% during a JavaScript HTTP server development task. However, the study also noted that the benefits of such tools vary across users, with less experienced developers experiencing more substantial improvements compared to their more experienced peers. These results highlight the increasing integration of artificial intelligence in software development workflows and its varying impact on productivity outcomes.
+
+Given the increasing availability of productivity-related data from both developer activities and AI-assisted workflows, there is a growing need for analytical methods that can effectively interpret these patterns and generate reliable predictions. In response to this need, machine learning techniques have been widely explored in the field of software engineering to support data-driven decision-making.
+
+Thota et al. (2022) conducted a systematic review of machine learning techniques for software quality prediction, highlighting the use of instance-based methods such as k-Nearest Neighbors (kNN), alongside support vector machines and ensemble approaches, for classifying software defects using code metrics and developer-related data. Their findings indicate that these techniques have been widely adopted, with usage rates ranging from 32% to 58%, underscoring their relevance and effectiveness in software analytics and predictive modeling.
+
+Building on this foundation, machine learning algorithms such as k-Nearest Neighbors (kNN) have gained particular attention for their ability to classify outcomes based on similarity among data points. This approach is especially effective in handling non-linear relationships in both classification and regression tasks, as it relies on proximity within a feature space rather than predefined functional forms. However, its performance is highly dependent on proper data preprocessing, particularly the standardization of predictors to ensure unbiased distance-based computations (Hastie et al., 2023).
+
+Studies utilizing kNN have consistently demonstrated its effectiveness in classification tasks where relationships between variables are not explicitly defined. It performs well in structured datasets and can accurately classify outcomes when relevant features are properly selected and scaled. This is further supported by comparative research, which shows that kNN can achieve high predictive accuracy when applied appropriately. For instance, a study conducted in 2023 comparing kNN, support vector machines (SVM), and decision tree algorithms for student activity prediction found that kNN achieved an accuracy ranging from 92% to 94.5% after data scaling, making it highly competitive despite being slightly outperformed by SVM, which reached 95% accuracy (Authors, 2023). These findings reinforce the viability of kNN as a simple yet powerful classification method, capable of delivering competitive results alongside more complex algorithms. Its balance of interpretability and performance makes it particularly suitable for applications involving structured behavioral and productivity data.
+
+In the context of developer productivity, this suitability becomes particularly relevant due to the inherently multidimensional nature of the data involved. Prior studies have shown that productivity is influenced by a combination of work habits, cognitive load, environmental conditions, and the use of AI-assisted tools, all of which interact in complex and often non-linear ways. Such characteristics align well with the strengths of kNN, which relies on similarity-based classification rather than rigid assumptions about data distribution (Hastie et al., 2023).
+
+Given that the AI developer productivity dataset integrates diverse behavioral and cognitive factors, kNN provides an effective approach for identifying patterns that distinguish successful from unsuccessful task outcomes. Its ability to leverage structured, scaled data further supports its application in this study, enabling reliable prediction while maintaining interpretability. As a result, kNN is well-positioned to model developer productivity and contribute to a deeper understanding of the factors that influence task success.
+
+Overall, prior studies support the use of machine learning models, including kNN, as effective tools for analyzing and predicting productivity-related outcomes, while also emphasizing the importance of selecting meaningful variables and preprocessing data appropriately.
+
+## Related Literature
+Theoretical perspectives on productivity describe it as a multidimensional concept influenced by cognitive, behavioral, and environmental factors (Kumari et al., 2023). Earlier theories mainly focused on efficiency and output as the primary indicators of productivity (Singh & Chaudhary, 2022). More recent perspectives, however, argue that productivity is not determined by output alone, but also by factors such as mental workload, focus, stress, and external interruptions that can affect task performance (Hicks et al., 2024).
+
+Modern studies therefore suggest that productivity should be evaluated more holistically, considering not only the quantity of work completed but also the quality of performance and the conditions under which tasks are accomplished (Kumari et al., 2023). These perspectives are especially relevant in software development environments, where developer productivity is influenced by multiple interacting factors, including cognitive demands, workplace distractions, and the use of AI-assisted tools.
+
+As developer productivity becomes more complex and data-driven, researchers have increasingly explored data analytics and machine learning approaches to better analyze and predict performance outcomes. In this context, classification theory provides the foundation for predicting categorical outcomes using input variables. One widely used approach under this theory is instance-based learning, particularly the k-Nearest Neighbors (kNN) algorithm, which classifies data points according to their proximity to other points within a feature space (Aljumah, 2022). This approach operates on the assumption that similar conditions are likely to produce similar outcomes, making it suitable for analyzing behavioral and performance-related data where patterns emerge from historical similarities rather than predefined rules (Thota & Kumar, 2022).
+
+kNN has been recognized as particularly effective for behavioral analysis because of its ability to compare related patterns within datasets. In studies involving developer activities and productivity patterns, the algorithm can compare features such as commit frequency, code churn, and session duration to identify similarities between previous developer sessions or tasks. These similarities can then be used to predict outcomes such as task completion or defect proneness without relying on strict parametric assumptions (Aljumah, 2022).
+
+Beyond behavioral analysis, kNN has also shown strong potential in performance prediction tasks. In multidimensional feature spaces involving productivity metrics and cognitive-related variables, the algorithm uses proximity between data points to classify high and low performance outcomes. Studies suggest that this approach can achieve competitive accuracy when applied to structured behavioral datasets, particularly when proper preprocessing and feature scaling techniques are used (Thota & Kumar, 2022). These characteristics make kNN especially relevant for developer productivity analysis, where multiple productivity-related variables interact in complex ways.
+
+In addition to similarity-based classification, another important concept in predictive analytics is feature interaction, which explains how multiple variables collectively influence an outcome rather than acting independently. This aligns with the idea that developer productivity is shaped by a combination of behavioral, cognitive, and environmental conditions. In datasets involving developer activity, variables such as code churn, commit frequency, and task duration often interact in complex ways, making preprocessing techniques like normalization and feature scaling essential for improving model performance. This is particularly important for distance-based algorithms such as kNN, where improperly scaled features can affect similarity calculations and reduce prediction accuracy, as highlighted in previous studies on software defect prediction (Aljumah, 2022).
+
+In summary, productivity is understood as a multidimensional concept influenced by cognitive, behavioral, environmental, and technological factors. Modern perspectives move beyond simple efficiency and output, considering aspects such as mental workload, focus, and working conditions as part of performance evaluation. This broader view reflects the complexity of measuring productivity in real-world environments, particularly in software development where multiple factors interact at the same time.
+
+Machine learning has become a common approach for analyzing and predicting productivity-related outcomes, especially in datasets with interconnected variables. Among these methods, k-Nearest Neighbors (kNN) is frequently highlighted due to its similarity-based classification approach and its ability to work with structured behavioral data. Its performance is closely tied to proper data preparation, particularly feature scaling and normalization, which help ensure reliable distance-based comparisons. Overall, these approaches provide a practical basis for analyzing patterns in developer productivity and predicting task-related outcomes.
+
+## Conceptual Framework
+
+```{r conceptual-framework, echo=FALSE, fig.height=4, fig.width=10}
+
+# Initialize the plot
+plot.new()
+plot.window(xlim = c(0, 10), ylim = c(0, 4))
+
+# Draw the IPO Boxes (Input, Process, Output)
+rect(0, 0.2, 3, 3.8, col = "#eef2f7", border = "#0969da", lwd = 2)   # Input
+rect(3.8, 1, 6.2, 3,  col = "#eef2f7", border = "#9a6700", lwd = 2) # Process
+rect(7, 1, 10, 3,      col = "#eef2f7", border = "#1a7f37", lwd = 2) # Output
+
+# Draw Connection Arrows
+arrows(3, 2, 3.8, 2, length = 0.1, lwd = 2, col = "#24292f")
+arrows(6.2, 2, 7, 2, length = 0.1, lwd = 2, col = "#24292f")
+
+# Add Section Headers
+text(1.5, 3.5, "INPUT",    font = 2, cex = 0.9, col = "#0969da")
+text(5.0, 2.7, "PROCESS", font = 2, cex = 0.9, col = "#9a6700")
+text(8.5, 2.7, "OUTPUT",  font = 2, cex = 0.9, col = "#1a7f37")
+
+# List the Input Features
+features_text <- c("Coding Hours", "Coffee Intake (mg)", "Distractions",
+                   "Sleep Hours", "Commits", "Bugs Reported",
+                   "AI Usage Hours", "Cognitive Load")
+
+for (i in seq_along(features_text)) {
+  text(0.2, 3.1 - (i * 0.32), paste0("• ", features_text[i]), 
+       cex = 0.7, col = "#24292f", adj = 0)
+}
+
+# List the Process steps
+text(5.0, 2.3, "kNN Algorithm",     cex = 0.7, col = "#24292f")
+text(5.0, 2.0, "Z-score Scaling",   cex = 0.7, col = "#24292f")
+text(5.0, 1.7, "Distance Voting",   cex = 0.7, col = "#24292f")
+text(5.0, 1.4, "k = 1 to 31 (odd)", cex = 0.7, col = "#24292f")
+
+# List the Output
+text(8.5, 2.2, "Task Success",   cex = 0.8, font = 2, col = "#24292f")
+text(8.5, 1.8, "Fail / Success", cex = 0.75, col = "#24292f")
+```
+This study proposes a predictive framework in which a developer's daily task success outcome is determined by a combination of behavioral, environmental, and workload-related factors. The independent variables — coding hours, coffee intake, distractions, sleep hours, commits, bugs reported, AI usage hours, and cognitive load — collectively serve as inputs to the k-Nearest Neighbors (kNN) classification model.
+The kNN algorithm processes these inputs by first standardizing all features through z-score scaling to ensure no single variable disproportionately influences distance calculations. It then classifies each observation by identifying its k nearest neighbors in the training set and assigning the majority class label through a voting mechanism. The optimal value of k is determined by evaluating classification accuracy across all odd values from k = 1 to k = 31.
+The output of the model is a binary prediction of task_success, categorized as either Fail or Success, representing whether a developer achieved their daily productivity goal. Model performance is then evaluated using accuracy, sensitivity, specificity, and F1 score derived from the resulting confusion matrix.
+Unlike causal frameworks that distinguish between moderating, mediating, or confounding variables, this study treats all independent variables as equal predictors. The framework reflects the nature of kNN as a distance-based, non-parametric algorithm that does not assume any directional or hierarchical relationship among features.
+
+# Chapter 3: Methodology
+## Research Design
+This study employs a descriptive and predictive research design. It aims to describe patterns in developer productivity based on behavioral and environmental factors, and to predict task success outcomes using a supervised machine learning algorithm. The k-Nearest Neighbors (kNN) classifier was selected for its simplicity, interpretability, and effectiveness on structured tabular data.
+
+## Data Collection
+The dataset used in this study was sourced from Kaggle — AI Developer Productivity Dataset — consisting of 500 observations of simulated developer activity records. Each record captures a single developer's daily work session, including behavioral metrics and a binary outcome indicating whether their productivity goal was achieved.
+
+```{r}
+# Load dataset
+# data <- read.csv("ai_dev_productivity.csv")
+# head(data)
+```
+
+Variables Description
+
+Dependent Variable (Target):
+
+task_success — A binary variable indicating whether the developer achieved their daily productivity goal. Encoded as 0 (Fail) and 1 (Success), then converted to a factor with labels "Fail" and "Success".
+
+Independent Variables (Features):
+
+| Variable | Description | Range | Type |
+|---|---|---|---|
+| Coding Hours | Total focused hours spent on software development work | 0–12 hrs | Continuous |
+| Coffee Intake (mg) | Daily caffeine intake in milligrams | 0–600 mg | Continuous |
+| Distractions | Number of distractions encountered during the day | 0–10 | Discrete |
+| Sleep Hours | Number of hours of sleep the previous night | 3–10 hrs | Continuous |
+| Commits | Number of code commits pushed during the day | Numeric | Discrete |
+| Bugs Reported | Number of bugs reported or encountered during the day | Numeric | Discrete |
+| AI Usage Hours | Hours spent using AI tools during the workday | Numeric | Continuous |
+| Cognitive Load | Self-reported mental strain | 1–10 | Ordinal |
+
+## Data Analysis Techniques
+
+### Descriptive Statistics
+Descriptive statistics were computed for all independent variables to summarize the distribution and spread of the dataset. These include the mean, standard deviation, minimum, and maximum for each continuous feature. A frequency table was also produced for the target variable task_success to assess class balance between Fail and Success outcomes.
+
+The following visualizations were used to support descriptive analysis:
+
+1. Histograms for each continuous feature to examine the shape and spread of individual variable distributions
+2. Bar plot for task_success to visualize the proportion of successful versus failed productivity sessions
+3. Boxplots grouped by task_success to compare feature distributions between the two outcome classes, highlighting which variables differ most between Fail and Success
+4. Correlation matrix to examine linear relationships among the independent variables, which is particularly relevant given that kNN relies on distance calculations and correlated features can disproportionately influence results
+
+### Inferential Statistics
+Model performance was evaluated using a confusion matrix derived from the kNN classifier's predictions on the 100-observation test set. The following metrics were computed:
+1. Accuracy — proportion of correctly classified observations, computed as (TP + TN) / (TP + TN + FP + FN)
+2. Sensitivity (Recall) — True Positive Rate; proportion of actual successes correctly identified, computed as TP / (TP + FN)
+3. Specificity — True Negative Rate; proportion of actual failures correctly identified, computed as TN / (TN + FP)
+4. F1 Score — harmonic mean of precision and sensitivity, computed as 2TP / (2TP + FP + FN), balancing the trade-off between false positives and false negatives
+
+### Machine Learning Models
+The kNN algorithm was applied using the class package in R. The dataset was split into a training set (400 observations, 80%) and a test set (100 observations, 20%) using set.seed(31) for reproducibility.
+
+Prior to model training, all features were standardized using z-score scaling so that high-magnitude variables such as coffee_intake_mg do not disproportionately influence distance calculations over lower-magnitude variables like sleep_hours or cognitive_load. Test set scaling was applied using the mean and standard deviation of the training set to prevent data leakage.
+
+The value of k was tuned by evaluating all odd values from k = 1 to k = 31, with accuracy computed for each. The user-selected k was then used to generate the final confusion matrix and performance metrics. Results were visualized through the following:
+1. Confusion matrix table displaying TP, TN, FP, and FN counts
+2. Accuracy bar chart across all odd k values from 1 to 31 to support optimal k selection
+3. Scatter plot of Coding Hours vs Commits, with points colored by predicted class (Success or Fail) and shaped by prediction correctness
+
+
+## Chapter 4: Results and Discussion
+Descriptive Statistics
+
+Visualization
+```{r}
+library(ggplot2)
+#ggplot(data, aes(x=Variable1, y=Variable2)) +
+#  geom_point() +
+#  theme_minimal()
+```
+
+Model (Example: Linear Regression)
+```{r}
+#model <- lm(Y ~ X1 + X2, data=data)
+#summary(model)
+```
+
+Interpretation
+
+Discuss findings in paragraph form.
+
+## Chapter 5: Conclusion and Recommendations
+Conclusion
+
+Summarize key findings.
+
+**Recommendations**
+
+Provide practical suggestions
+
+## References
+Peng, S., Kalliamvakou, E., & Cihon, P. (2023). The impact of AI on developer productivity: Evidence from GitHub Copilot [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2302.06590
+
+Thota, M., & Kumar, R. (2022). Software quality prediction using machine learning techniques: A systematic review. International Journal of Advanced Research in Computer Science, 13(6), 1-10. https://ijarcs.info/index.php/Ijarcs/article/view/6918
+
+Authors. (2023). Comparative study of KNN, SVM and decision tree algorithm for student activity prediction. IJCSaM, 5(1), 1-10. https://iptek.its.ac.id/index.php/ijcsam/article/view/4360
+
+Hicks, C. M., Lee, C. S., & Ramsey, M. (2024). Developer thriving: Four sociocognitive factors that create resilient productivity on software teams. Proceedings of the ACM on Human-Computer Interaction. https://dsl.pubpub.org/pub/dev-thriving/release/1
+
+Kumari, S., Jindal, P., & Mittal, A. (2023). Employee productivity: Exploring the multidimensional nature with acculturation, open innovation, social media networking and employee vitality in the Indian banking sector: An analytical approach. International Journal of Professional Business Review, 8(7), Article e02535. https://api.semanticscholar.org/CorpusID:260082297
+
+Singh, A., & Chaudhary, P. (2022). Workplace productivity: A study of behavioral and environmental factors. Journal of Organizational Effectiveness: People and Performance, 9(3), 201-218. https://www.scirp.org/reference/referencespapers?referenceid=4053176
+
+Aljumah, A. (2022). A robust tuned K-nearest neighbours classifier for software defect prediction. University of Vaasa. https://osuva.uwasa.fi/items/29f6c8f9-7801-4fb2-99c8-2c583b50f5ab
+
+## Appendices
+Appendix A: Code
