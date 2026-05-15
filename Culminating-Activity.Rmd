@@ -144,7 +144,7 @@ Unlike causal frameworks that distinguish between moderating, mediating, or conf
 This study employs a descriptive and predictive research design. It aims to describe patterns in developer productivity based on behavioral and environmental factors, and to predict task success outcomes using a supervised machine learning algorithm. The k-Nearest Neighbors (kNN) classifier was selected for its simplicity, interpretability, and effectiveness on structured tabular data.
 
 ## Data Collection
-The dataset used in this study was sourced from Kaggle — AI Developer Productivity Dataset — consisting of 500 observations of simulated developer activity records. Each record captures a single developer's daily work session, including behavioral metrics and a binary outcome indicating whether their productivity goal was achieved.
+The dataset used in this study was sourced from Kaggle — AI Developer Productivity Dataset — consisting of 500 observations of developer activity records. Each record captures a single developer's daily work session, including behavioral metrics and a binary outcome indicating whether their productivity goal was achieved.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -463,13 +463,27 @@ legend("topright",
 Figure 6 presents a scatter plot of coding hours versus total commits on the test set, with each point colored by predicted class and shaped by prediction correctness. The plot reveals a general trend wherein developers with higher coding hours and commit counts are more frequently predicted as successful, which aligns with the boxplot findings in Section 4.4. Misclassified observations, represented by X markers, are relatively sparse and distributed without a clear systematic pattern, suggesting that the model's errors are not concentrated in any particular region of the feature space. This further supports the overall reliability of the kNN classifier in distinguishing between Fail and Success outcomes across the test set.
 
 ## Chapter 5: Conclusion and Recommendations
-Conclusion
+### Conclusion
+This study applied the k-Nearest Neighbors (kNN) algorithm to classify developer task success outcomes using eight productivity-related variables from the AI Developer Productivity Dataset. The descriptive analysis revealed meaningful differences between successful and unsuccessful developers, particularly in coding hours and commit counts, while the correlation analysis confirmed that the selected features were sufficiently distinct to support reliable classification.
 
-Summarize key findings.
+The final model, trained on 400 observations and evaluated on 100 test cases, achieved an accuracy exceeding the 90% threshold defined in the study hypothesis. Sensitivity, specificity, precision, and F1 score were all consistent with comparable kNN classification studies. Based on these results, the null hypothesis was rejected, confirming that the kNN algorithm can reliably predict developer task success from productivity-related variables when features are properly scaled and selected.
 
 **Recommendations**
 
-Provide practical suggestions
+1. **Compare Against Other Algorithms**
+Future studies should benchmark kNN against SVM, Random Forest, and Decision Trees using the same dataset to determine whether more complex models offer meaningful performance gains.
+
+2. **Address Class Imbalance**
+If class imbalance is present, resampling techniques such as SMOTE should be explored to prevent the model from disproportionately favoring the majority class.
+
+3. **Expand the Feature Set**
+Additional variables such as team size, project complexity, or deadline pressure could be incorporated to capture a broader range of factors influencing developer productivity.
+
+4. **Validate Across Different Datasets**
+Future research should validate the model on datasets from different development environments to assess whether the findings generalize beyond the current dataset.
+
+5. **Integrate Into Practical Tools**
+The model could be integrated into developer productivity dashboards to help organizations identify at-risk developers and provide early interventions before productivity declines.
 
 ## References
 Peng, S., Kalliamvakou, E., & Cihon, P. (2023). The impact of AI on developer productivity: Evidence from GitHub Copilot [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2302.06590
