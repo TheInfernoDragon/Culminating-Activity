@@ -200,9 +200,86 @@ The value of k was tuned by evaluating all odd values from k = 1 to k = 31, with
 2. Accuracy bar chart across all odd k values from 1 to 31 to support optimal k selection
 3. Scatter plot of Coding Hours vs Commits, with points colored by predicted class (Success or Fail) and shaped by prediction correctness
 
-
+\newpage
 ## Chapter 4: Results and Discussion
 Descriptive Statistics
+```{r, echo=FALSE}
+library(ggplot2)
+setwd("~/Desktop/Coding/RStudio/Culminating-Activity/kNN-Classification-Culminating-Activity")
+dev_data <- read.csv("ai_dev_productivity.csv")
+dev_data$task_success <- factor(dev_data$task_success, levels = c(0, 1),
+                                labels = c("Fail", "Success"))
+
+summary(dev_data)
+# Histogram for each numeric variable
+par(mfrow = c(2, 4))
+
+hist(dev_data$hours_coding,
+     main = "Hours Coding",
+     xlab = "Hours Coding",
+     col = "skyblue",
+     border = "white",
+     breaks = 10)
+
+hist(dev_data$coffee_intake_mg,
+     main = "Coffee Intake (mg)",
+     xlab = "Coffee Intake (mg)",
+     col = "skyblue",
+     border = "white",
+     breaks = 10)
+
+hist(dev_data$distractions,
+     main = "Distractions",
+     xlab = "Distractions",
+     col = "skyblue",
+     border = "white",
+     breaks = 10)
+
+hist(dev_data$sleep_hours,
+     main = "Sleep Hours",
+     xlab = "Sleep Hours",
+     col = "skyblue",
+     border = "white",
+     breaks = 10)
+
+hist(dev_data$commits,
+     main = "Commits",
+     xlab = "Commits",
+     col = "skyblue",
+     border = "white",
+     breaks = 10)
+
+hist(dev_data$bugs_reported,
+     main = "Bugs Reported",
+     xlab = "Bugs Reported",
+     col = "skyblue",
+     border = "white",
+     breaks = 10)
+
+hist(dev_data$ai_usage_hours,
+     main = "AI Usage Hours",
+     xlab = "AI Usage Hours",
+     col = "skyblue",
+     border = "white",
+     breaks = 10)
+
+hist(dev_data$cognitive_load,
+     main = "Cognitive Load",
+     xlab = "Cognitive Load",
+     col = "skyblue",
+     border = "white",
+     breaks = 10)
+
+par(mfrow = c(1, 1))
+
+task_freq <- table(dev_data$task_success)
+
+barplot(task_freq,
+        main = "Frequency of Task Success",
+        xlab = "Task Success",
+        ylab = "Frequency",
+        col = "steelblue")
+```
 
 Visualization
 ```{r}
