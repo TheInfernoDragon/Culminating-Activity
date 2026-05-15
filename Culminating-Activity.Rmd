@@ -48,10 +48,25 @@ To build and evaluate a kNN-based classification model that predicts developer t
 
 
 ## Significance of the Study
-Explain who benefits and how.
+The continued growth and relevance of artificial intelligence, along with its ongoing development, highlight the increasing demand for AI developers with strong productivity skills. Examining developer productivity in relation to behavioral, health, work-related, and other relevant factors is important for understanding how they influence productivity and work quality. Such analysis can help identify shortcomings and support the development and implementation of measures that promote improved productivity, performance, and overall developer well-being.
+
+Developers
+This study is significant to software developers because it identifies how work-related and personal factors are associated with task success. By understanding these relationships, developers can adjust their routines and work habits to improve productivity, produce higher-quality output, and maintain better overall well-being.
+
+Software Development Teams and Project Managers
+This study is significant to software development teams and project managers because it provides insights into the conditions that contribute to successful task completion, which can support better planning, workload distribution, and team management practices that promote productivity during software development.
+
+Organizations and Technology Companies
+This study is significant to organizations and technology companies because it demonstrates how machine learning can be used to predict developer productivity and support data-driven decision-making. The results can help organizations optimize resource allocation, evaluate productivity initiatives, and make informed investments in tools and practices that improve software development outcomes.
+
+Researchers and Future Investigators
+This study is significant to researchers and future investigators because it offers a practical application of the k-Nearest Neighbors (kNN) algorithm in analyzing developer productivity. It can serve as a foundation for further studies that compare predictive models, incorporate additional variables, or use larger and more diverse datasets.
+
+Educational Institutions and Students
+This study is significant to educational institutions and students in computer science, information technology, and data science because it illustrates how machine learning techniques can be applied to real-world software engineering problems. 
 
 ## Scope and Limitations
-Define the boundaries of the study.
+This dataset used for the study is limited to 500 daily entries and focuses on eight productivity-related predictors and one binary outcome, task_success. It uses kNN as the only classification model and measures performance through standard classification metrics. Since no further information is given regarding the full development environment, toolchain, or workflow processes, so the results may not be applicable to all software development settings. The study only uses a single dataset for training the model may cause the model to overfit, following its specific patterns too closely which negatively affects the model’s performance when applied to a different dataset.
 
 
 # Chapter 2: Review of Related Literature
@@ -301,8 +316,11 @@ Discuss findings in paragraph form.
 
 ## Chapter 5: Conclusion and Recommendations
 Conclusion
+This study demonstrated that a k-Nearest Neighbors (kNN) classification model can effectively predict developer task success using productivity-related variables. The final kNN model showed balanced classification results across success and failure cases, with strong precision, recall, specificity, and F1-score. With an accuracy of 91%, the model exceeded the 90% threshold established in the hypothesis and showed that behavioral, workload-related, and AI-usage factors can be combined to produce reliable predictions of productivity outcomes.
 
-Summarize key findings.
+The findings suggest that developer task success is associated with multiple factors rather than a single variable. Among the predictors, coding hours and commits appeared to be the most related to successful outcomes, while sleep hours also showed a small positive association. In contrast, distractions and cognitive load were less clearly separated between success and failure groups, indicating that their influence is more likely to emerge in combination with other variables rather than in isolation.
+
+
 
 **Recommendations**
 
