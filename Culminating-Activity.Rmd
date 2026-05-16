@@ -6,7 +6,11 @@ output: pdf_document
 ---
 \newpage
 # Abstract
-Provide a concise summary of the study including purpose, methods, results, and conclusions (150–250 words).
+Developer productivity is shaped by complex behavioral and environmental factors. This study examines the effectiveness of the k-Nearest Neighbors (kNN) algorithm in predicting daily developer task success using the 500-observation “AI Developer Productivity Dataset.” The dataset includes variables related to coding hours, caffeine intake, distractions, sleep hours, commits, bugs reported, AI usage, and cognitive load.
+
+To prepare the data for analysis, the dataset was divided into 80% training data and 20% testing data, while all numerical features underwent z-score standardization to reduce distance bias in the model. Different odd k values ranging from 1 to 31 were evaluated to determine the optimal parameter, with the best performance achieved at k = 3.
+
+The resulting kNN classifier achieved 91% accuracy, along with 91.5% sensitivity, 90.2% specificity, and a 92.3% F1-score. These results confirm kNN is an effective tool for classifying developer productivity, providing data-driven insights to improve modern software workflows.
 
 # Chapter 1: Introduction
 
