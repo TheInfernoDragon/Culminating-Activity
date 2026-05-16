@@ -1,10 +1,14 @@
 ---
 title: "Culminating Activity"
-author: "You Names"
+author: | 
+  James Benedict Ang  
+  Arch Steven Betonion  
+  Aldwin Miguel Fernandez  
+  Kurt Michael Florentino  
+  Christian James Gelig  
 date: ""
 output: pdf_document
 ---
-\newpage
 # Abstract
 Developer productivity is shaped by complex behavioral and environmental factors. This study examines the effectiveness of the k-Nearest Neighbors (kNN) algorithm in predicting daily developer task success using the 500-observation “AI Developer Productivity Dataset.” The dataset includes variables related to coding hours, caffeine intake, distractions, sleep hours, commits, bugs reported, AI usage, and cognitive load.
 
@@ -116,7 +120,6 @@ Machine learning has become a common approach for analyzing and predicting produ
 
 ```{r conceptual-framework, echo=FALSE, fig.height=4, fig.width=10}
 
-# Initialize the plot
 plot.new()
 plot.window(xlim = c(0, 10), ylim = c(0, 4))
 
@@ -154,7 +157,7 @@ text(5.0, 1.4, "k = 1 to 31 (odd)", cex = 0.7, col = "#24292f")
 text(8.5, 2.2, "Task Success",   cex = 0.8, font = 2, col = "#24292f")
 text(8.5, 1.8, "Fail / Success", cex = 0.75, col = "#24292f")
 ```
-This study proposes a predictive framework in which a developer's daily task success outcome is determined by a combination of behavioral, environmental, and workload-related factors. The independent variables — coding hours, coffee intake, distractions, sleep hours, commits, bugs reported, AI usage hours, and cognitive load — collectively serve as inputs to the k-Nearest Neighbors (kNN) classification model.
+This study proposes a predictive framework in which a developer's daily task success outcome is determined by a combination of behavioral, environmental, and workload-related factors. The independent variables, coding hours, coffee intake, distractions, sleep hours, commits, bugs reported, AI usage hours, and cognitive load collectively serve as inputs to the k-Nearest Neighbors (kNN) classification model.
 The kNN algorithm processes these inputs by first standardizing all features through z-score scaling to ensure no single variable disproportionately influences distance calculations. It then classifies each observation by identifying its k nearest neighbors in the training set and assigning the majority class label through a voting mechanism. The optimal value of k is determined by evaluating classification accuracy across all odd values from k = 1 to k = 31.
 The output of the model is a binary prediction of task_success, categorized as either Fail or Success, representing whether a developer achieved their daily productivity goal. Model performance is then evaluated using accuracy, sensitivity, specificity, and F1 score derived from the resulting confusion matrix.
 Unlike causal frameworks that distinguish between moderating, mediating, or confounding variables, this study treats all independent variables as equal predictors. The framework reflects the nature of kNN as a distance-based, non-parametric algorithm that does not assume any directional or hierarchical relationship among features.
@@ -217,6 +220,7 @@ The following visualizations were used to support descriptive analysis:
 
 ### Inferential Statistics
 Model performance was evaluated using a confusion matrix derived from the kNN classifier's predictions on the 100-observation test set. The following metrics were computed:
+
 1. Accuracy — proportion of correctly classified observations, computed as (TP + TN) / (TP + TN + FP + FN)
 2. Sensitivity (Recall) — True Positive Rate; proportion of actual successes correctly identified, computed as TP / (TP + FN)
 3. Specificity — True Negative Rate; proportion of actual failures correctly identified, computed as TN / (TN + FP)
@@ -228,6 +232,7 @@ The kNN algorithm was applied using the class package in R. The dataset was spli
 Prior to model training, all features were standardized using z-score scaling so that high-magnitude variables such as coffee_intake_mg do not disproportionately influence distance calculations over lower-magnitude variables like sleep_hours or cognitive_load. Test set scaling was applied using the mean and standard deviation of the training set to prevent data leakage.
 
 The value of k was tuned by evaluating all odd values from k = 1 to k = 31, with accuracy computed for each. The user-selected k was then used to generate the final confusion matrix and performance metrics. Results were visualized through the following:
+
 1. Confusion matrix table displaying TP, TN, FP, and FN counts
 2. Accuracy bar chart across all odd k values from 1 to 31 to support optimal k selection
 3. Scatter plot of Coding Hours vs Commits, with points colored by predicted class (Success or Fail) and shaped by prediction correctness
@@ -242,7 +247,7 @@ rownames(desc_stats) <- c("Coding Hours", "Coffee Intake (mg)", "Distractions",
                            "Sleep Hours", "Commits", "Bugs Reported",
                            "AI Usage Hours", "Cognitive Load")
 knitr::kable(desc_stats,
-             caption = "Table 2. Descriptive Statistics of Independent Variables",
+             caption = "Descriptive Statistics of Independent Variables",
              booktabs = TRUE,
              col.names = c("N", "Mean", "SD", "Min", "Max")) |>
   kable_styling(latex_options = c("hold_position"), font_size = 11) |>
@@ -258,7 +263,7 @@ class_table <- as.data.frame(table(dev_data$task_success))
 class_table$Percentage <- round(prop.table(class_table$Freq) * 100, 2)
 colnames(class_table) <- c("Outcome", "Count", "Percentage (%)")
 knitr::kable(class_table,
-             caption = "Table 3. Class Distribution of Task Success",
+             caption = "Class Distribution of Task Success",
              booktabs = TRUE) |>
   kable_styling(latex_options = c("hold_position"), font_size = 11) |>
   row_spec(0, bold = TRUE)
@@ -348,10 +353,20 @@ acc_vec <- sapply(k_vals, function(k) {
 })
 
 best_k <- k_vals[which.max(acc_vec)]
-cat("Best k:", best_k, "\n")
 ```
 
-```{r k-barplot, echo=FALSE, fig.height=4, fig.width=7, fig.cap="Figure 5. Accuracy Across k Values (k = 1 to 31)"}
+```{r k-table, echo=FALSE}
+k_acc_table <- data.frame(k = k_vals, Accuracy = round(acc_vec * 100, 2))
+knitr::kable(k_acc_table,
+             caption = "Classification Accuracy Across k Values",
+             booktabs = TRUE,
+             col.names = c("k", "Accuracy (%)")) |>
+  kable_styling(latex_options = c("hold_position"), font_size = 11) |>
+  row_spec(0, bold = TRUE) |>
+  row_spec(which(k_vals == best_k), bold = TRUE, color = "#0969da")
+```
+
+```{r k-barplot, echo=FALSE}
 barplot(acc_vec * 100,
         names.arg = k_vals,
         col       = ifelse(k_vals == best_k, "#0969da", "#d0d7de"),
@@ -364,17 +379,6 @@ legend("bottomright",
        legend = c("Best k", "Other k"),
        fill   = c("#0969da", "#d0d7de"),
        border = NA, bty = "n")
-```
-
-```{r k-table, echo=FALSE}
-k_acc_table <- data.frame(k = k_vals, Accuracy = round(acc_vec * 100, 2))
-knitr::kable(k_acc_table,
-             caption = "Table 4. Classification Accuracy Across k Values",
-             booktabs = TRUE,
-             col.names = c("k", "Accuracy (%)")) |>
-  kable_styling(latex_options = c("hold_position"), font_size = 11) |>
-  row_spec(0, bold = TRUE) |>
-  row_spec(which(k_vals == best_k), bold = TRUE, color = "#0969da")
 ```
 Table 4 and Figure 5 present the classification accuracy of the kNN model across all odd values of k from 1 to 31. Accuracy fluctuated across the range of k values, with lower values of k producing higher variance in predictions and higher values producing more stable but potentially over-smoothed results. The optimal value of k was identified as the value yielding the highest accuracy on the test set, which is highlighted in both the table and the bar chart. This systematic evaluation of k ensures that the selected model is not arbitrarily configured and reflects the best-performing configuration within the tested range.
 
@@ -395,27 +399,7 @@ prec <- round((tp / (tp + fp)) * 100, 1)
 f1   <- round((2 * tp / (2 * tp + fp + fn)) * 100, 1)
 ```
 
-```{r metrics-table, echo=FALSE}
-metrics_table <- data.frame(
-  Metric  = c("Accuracy", "Sensitivity (Recall)",
-               "Specificity", "Precision", "F1 Score"),
-  Formula = c("(TP+TN)/(TP+TN+FP+FN)", "TP/(TP+FN)",
-               "TN/(TN+FP)", "TP/(TP+FP)", "2TP/(2TP+FP+FN)"),
-  Value   = paste0(c(acc, sens, spec, prec, f1), "%")
-)
-
-knitr::kable(metrics_table,
-             caption = "Table 5. kNN Model Performance Metrics",
-             booktabs = TRUE,
-             align = c("l", "l", "c")) |>
-  kable_styling(latex_options = c("hold_position"), font_size = 11) |>
-  row_spec(0, bold = TRUE)
-```
-
 ### 4.7 Confusion Matrix
-Table 6 presents the confusion matrix for the final kNN model evaluated on the 100-observation test set. The matrix shows that the model correctly classified the majority of both Success and Fail outcomes, with a relatively small number of false positives and false negatives. The true positive count indicates that the model was effective at identifying developers who achieved task success, while the true negative count reflects reasonable performance in identifying those who did not.
-The relatively low false negative count is particularly relevant given the study context, as failing to identify a successful developer as such would represent a more operationally significant error than a false positive.
-
 ```{r confusion-matrix, echo=FALSE}
 cm_table <- data.frame(
   " "           = c("Actual: Success", "Actual: Fail"),
@@ -424,14 +408,17 @@ cm_table <- data.frame(
   check.names = FALSE
 )
 knitr::kable(cm_table,
-             caption = "Table 6. Confusion Matrix",
+             caption = "Confusion Matrix",
              booktabs = TRUE) |>
   kable_styling(latex_options = c("hold_position"), font_size = 11) |>
   row_spec(0, bold = TRUE)
 ```
 
+Table 5 presents the confusion matrix for the final kNN model evaluated on the 100-observation test set. The matrix shows that the model correctly classified the majority of both Success and Fail outcomes, with a relatively small number of false positives and false negatives. The true positive count indicates that the model was effective at identifying developers who achieved task success, while the true negative count reflects reasonable performance in identifying those who did not.
+The relatively low false negative count is particularly relevant given the study context, as failing to identify a successful developer as such would represent a more operationally significant error than a false positive.
+
 ### 4.8 Model Performance Metrics
-```{r metrics-table-2, echo=FALSE}
+```{r metrics-table, echo=FALSE}
 metrics_table <- data.frame(
   Metric = c("Accuracy", "Sensitivity (Recall)",
              "Specificity", "Precision", "F1 Score"),
@@ -440,13 +427,13 @@ metrics_table <- data.frame(
   Value = paste0(c(acc, sens, spec, prec, f1), "%")
 )
 knitr::kable(metrics_table,
-             caption = "Table 5. kNN Model Performance Metrics",
+             caption = "kNN Model Performance Metrics",
              booktabs = TRUE,
              align = c("l", "l", "c")) |>
   kable_styling(latex_options = c("hold_position"), font_size = 11) |>
   row_spec(0, bold = TRUE)
 ```
-Table 5 summarizes the performance metrics derived from the confusion matrix. The model achieved an overall accuracy consistent with the upper range reported in comparable kNN classification studies on behavioral datasets. Sensitivity, representing the proportion of actual successes correctly identified, was notably high, indicating the model's strong ability to detect true positive outcomes. Specificity, representing the correct identification of failures, was similarly strong, suggesting that the model does not disproportionately favor one class over the other.
+Table 6 summarizes the performance metrics derived from the confusion matrix. The model achieved an overall accuracy consistent with the upper range reported in comparable kNN classification studies on behavioral datasets. Sensitivity, representing the proportion of actual successes correctly identified, was notably high, indicating the model's strong ability to detect true positive outcomes. Specificity, representing the correct identification of failures, was similarly strong, suggesting that the model does not disproportionately favor one class over the other.
 The F1 score, which balances precision and recall through their harmonic mean, further confirms the overall reliability of the model. A high F1 score in this context indicates that the model maintains a reasonable trade-off between avoiding missed successes and avoiding false alarms.
 These results are consistent with findings from related studies, such as the comparative analysis by Authors (2023), which reported kNN accuracies ranging from 92% to 94.5% on scaled behavioral datasets, reinforcing the validity of this study's approach.
 
@@ -454,6 +441,7 @@ These results are consistent with findings from related studies, such as the com
 The study posed the following hypotheses:
 
 H0: The kNN algorithm does not achieve an accuracy of at least 90% in predicting developer task success based on productivity-related variables.
+
 H1: The kNN algorithm achieves an accuracy of at least 90% in predicting developer task success based on productivity-related variables.
 
 Based on the model evaluation results, the null hypothesis (H0) is rejected. The kNN classifier achieved an accuracy that meets or exceeds the 90% threshold, providing sufficient evidence to support H1. This finding indicates that the selected productivity-related variables, when properly scaled and used as inputs to a kNN classifier, are capable of predicting developer task success with high reliability.
@@ -487,19 +475,14 @@ Figure 6 presents a scatter plot of coding hours versus total commits on the tes
 ### Conclusion
 This study applied the k-Nearest Neighbors (kNN) algorithm to classify developer task success outcomes using eight productivity-related variables from the AI Developer Productivity Dataset. The descriptive analysis revealed meaningful differences between successful and unsuccessful developers, particularly in coding hours and commit counts, while the correlation analysis confirmed that the selected features were sufficiently distinct to support reliable classification.
 
-<<<<<<< HEAD
 The findings suggest that developer task success is associated with multiple factors rather than a single variable. Among the predictors, coding hours and commits appeared to be the most related to successful outcomes, while sleep hours also showed a small positive association. In contrast, distractions and cognitive load were less clearly separated between success and failure groups, indicating that their influence is more likely to emerge in combination with other variables rather than in isolation.
 
-=======
->>>>>>> eefeae403dbe1a87665edb51dedb708ab28974f9
 The final model, trained on 400 observations and evaluated on 100 test cases, achieved an accuracy exceeding the 90% threshold defined in the study hypothesis. Sensitivity, specificity, precision, and F1 score were all consistent with comparable kNN classification studies. Based on these results, the null hypothesis was rejected, confirming that the kNN algorithm can reliably predict developer task success from productivity-related variables when features are properly scaled and selected.
 
 **Recommendations**
 
 1. **Compare Against Other Algorithms**
 Future studies should benchmark kNN against SVM, Random Forest, and Decision Trees using the same dataset to determine whether more complex models offer meaningful performance gains.
-<<<<<<< HEAD
-=======
 
 2. **Address Class Imbalance**
 If class imbalance is present, resampling techniques such as SMOTE should be explored to prevent the model from disproportionately favoring the majority class.
@@ -545,3 +528,5 @@ Aljumah, A. (2022). A robust tuned K-nearest neighbours classifier for software 
 
 ## Appendices
 Appendix A: Code
+```{r ref.label=setdiff(knitr::all_labels(), c("conceptual-framework")), echo=TRUE, eval=FALSE}
+```
