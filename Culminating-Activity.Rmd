@@ -6,8 +6,11 @@ author: |
   Aldwin Miguel Fernandez  
   Kurt Michael Florentino  
   Christian James Gelig  
-date: ""
+date: "May 16, 2026"
 output: pdf_document
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{threeparttable}
 ---
 # Abstract
 Developer productivity is shaped by complex behavioral and environmental factors. This study examines the effectiveness of the k-Nearest Neighbors (kNN) algorithm in predicting daily developer task success using the 500-observation “AI Developer Productivity Dataset.” The dataset includes variables related to coding hours, caffeine intake, distractions, sleep hours, commits, bugs reported, AI usage, and cognitive load.
@@ -195,16 +198,55 @@ task_success — A binary variable indicating whether the developer achieved the
 
 Independent Variables (Features):
 
-| Variable | Description | Range | Type |
-|---|---|---|---|
-| Coding Hours | Total focused hours spent on software development work | 0–12 hrs | Continuous |
-| Coffee Intake (mg) | Daily caffeine intake in milligrams | 0–600 mg | Continuous |
-| Distractions | Number of distractions encountered during the day | 0–10 | Discrete |
-| Sleep Hours | Number of hours of sleep the previous night | 3–10 hrs | Continuous |
-| Commits | Number of code commits pushed during the day | Numeric | Discrete |
-| Bugs Reported | Number of bugs reported or encountered during the day | Numeric | Discrete |
-| AI Usage Hours | Hours spent using AI tools during the workday | Numeric | Continuous |
-| Cognitive Load | Self-reported mental strain | 1–10 | Ordinal |
+```{r independent-variables, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+df <- data.frame(
+  Variable = c(
+    "Coding Hours", "Coffee Intake (mg)", "Distractions",
+    "Sleep Hours", "Commits", "Bugs Reported",
+    "AI Usage Hours", "Cognitive Load"
+  ),
+  Description = c(
+    "Total focused hours spent on software development work",
+    "Daily caffeine intake in milligrams",
+    "Number of distractions encountered during the day",
+    "Number of hours of sleep the previous night",
+    "Number of code commits pushed during the day",
+    "Number of bugs reported or encountered during the day",
+    "Hours spent using AI tools during the workday",
+    "Self-reported mental strain"
+  ),
+  Range = c(
+    "0--12 hrs", "0--600 mg", "0--10",
+    "3--10 hrs", "Numeric", "Numeric",
+    "Numeric", "1--10"
+  ),
+  Type = c(
+    "Continuous", "Continuous", "Discrete",
+    "Continuous", "Discrete", "Discrete",
+    "Continuous", "Ordinal"
+  )
+)
+
+kable(df,
+  format = "latex",
+  booktabs = TRUE,
+  caption = "Dataset Variable Descriptions",
+  align = c("l", "l", "c", "c"),
+  linesep = ""
+) |>
+  kable_styling(
+    latex_options = c("striped", "hold_position"),
+    font_size = 10,
+  ) |>
+  column_spec(1, bold = TRUE) |>
+  footnote(general = "Ranges reflect the bounds used during data generation.",
+           general_title = "Note:",
+           footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
+```
 
 ## Data Analysis Techniques
 
@@ -528,5 +570,5 @@ Aljumah, A. (2022). A robust tuned K-nearest neighbours classifier for software 
 
 ## Appendices
 Appendix A: Code
-```{r ref.label=setdiff(knitr::all_labels(), c("conceptual-framework")), echo=TRUE, eval=FALSE}
+```{r ref.label=setdiff(knitr::all_labels(), c("conceptual-framework", "independent-variables")), echo=TRUE, eval=FALSE}
 ```
