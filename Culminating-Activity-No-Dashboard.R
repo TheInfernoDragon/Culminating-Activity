@@ -4,7 +4,7 @@ library(psych)
 library(corrplot)
  
  # ── Data Loading ───────────────────────────────────────────────────────────────
- setwd("/home/loxx_/Documents/Education/Second Year/Second Semester/Data Analytics/Culminating-Activity")
+ setwd("~/Desktop/Coding/RStudio/Culminating-Activity")
  dev_data <- read.csv("ai_dev_productivity.csv")
  dev_data$task_success <- factor(dev_data$task_success, levels = c(0, 1),
                                  labels = c("Fail", "Success"))
